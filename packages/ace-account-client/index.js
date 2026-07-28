@@ -128,6 +128,18 @@ export function createAceAccountClient(options) {
   return Object.freeze({
     appId,
     baseUrl,
+    async ensureAccount(options = {}) {
+      const payload = await requestWithTokenRefresh('/api/ace/account/bootstrap', {
+        method: 'POST',
+        signal: options.signal,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ appId }),
+      });
+      return Object.freeze({
+        ready: payload.ready === true,
+        created: payload.created === true,
+      });
+    },
     async loadSummary(options = {}) {
       const payload = await requestWithTokenRefresh('/api/ace/account/summary', {
         method: 'GET',

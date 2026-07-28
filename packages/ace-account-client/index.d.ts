@@ -44,6 +44,10 @@ export declare function createAceAccountClient(options: {
 }): {
   appId: AceAccountAppId;
   baseUrl: string;
+  ensureAccount(options?: { signal?: AbortSignal }): Promise<{
+    ready: boolean;
+    created: boolean;
+  }>;
   loadSummary(options?: { signal?: AbortSignal }): Promise<AceAccountSummary>;
   createHandoff(input?: {
     destination?: string;

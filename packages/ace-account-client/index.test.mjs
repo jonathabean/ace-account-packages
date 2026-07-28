@@ -55,6 +55,34 @@ assert.equal(calls[0].init.headers.Authorization, 'Bearer stale-token');
 assert.equal(calls[1].init.headers.Authorization, 'Bearer fresh-token');
 assert.equal(calls[1].url, 'https://app.npc-forge.com/api/ace/account/summary');
 
+const bootstrapCalls = [];
+const bootstrapClient = createAceAccountClient({
+  appId: 'dq-gm-mentor',
+  getIdToken: async () => 'bootstrap-token',
+  fetch: async (url, init) => {
+    bootstrapCalls.push({ url, init });
+    return new Response(
+      JSON.stringify({ ok: true, ready: true, created: true }),
+      { status: 200, headers: { 'Content-Type': 'application/json' } },
+    );
+  },
+});
+assert.deepEqual(
+  await bootstrapClient.ensureAccount(),
+  { ready: true, created: true },
+);
+assert.equal(bootstrapCalls.length, 1);
+assert.equal(
+  bootstrapCalls[0].url,
+  'https://app.npc-forge.com/api/ace/account/bootstrap',
+);
+assert.equal(bootstrapCalls[0].init.method, 'POST');
+assert.equal(
+  JSON.parse(bootstrapCalls[0].init.body).appId,
+  'dq-gm-mentor',
+);
+assert.equal(bootstrapCalls[0].init.headers.Authorization, 'Bearer bootstrap-token');
+
 assert.throws(
   () => createAceAccountClient({ appId: 'unknown', getIdToken: async () => 'token' }),
   /Unknown ACE suite app/,

@@ -1,6 +1,6 @@
 {
   "name": "@npc-forge/ace-account-client",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Framework-neutral browser client for the shared ACE account surface.",
   "type": "module",
   "exports": {
