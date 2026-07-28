@@ -1,0 +1,17 @@
+{
+  "name": "ace-account-packages",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "node packages/ace-account-client/index.test.mjs && node packages/ace-account-panel/index.test.mjs",
+    "pack:client": "npm pack ./packages/ace-account-client",
+    "pack:panel": "npm pack ./packages/ace-account-panel"
+  },
+  "engines": {
+    "node": ">=20 <23"
+  }
+}

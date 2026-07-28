@@ -1,0 +1,22 @@
+{
+  "name": "@npc-forge/ace-account-panel",
+  "version": "0.1.0",
+  "description": "Framework-neutral shared ACE account web component.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "README.md"
+  ],
+  "sideEffects": true,
+  "peerDependencies": {
+    "@npc-forge/ace-account-client": "^0.1.0"
+  },
+  "license": "UNLICENSED"
+}

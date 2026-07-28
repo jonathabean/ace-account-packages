@@ -1,0 +1,19 @@
+{
+  "name": "@npc-forge/ace-account-client",
+  "version": "0.1.0",
+  "description": "Framework-neutral browser client for the shared ACE account surface.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "license": "UNLICENSED"
+}
